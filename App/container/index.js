@@ -20,6 +20,16 @@ class Card extends Component {
   }
 }
 
+class NoMoreCards extends Component {
+  render() {
+    return (
+      <View style={[styles.noMoreCards]}>
+        <Text>Fim da linha</Text>
+      </View>
+    )
+  }
+}
+
 let Cards = [
  {text: 'Nemo', image: 'http://wallpaper.ultradownloads.com.br/166969_Papel-de-Parede-Procurando-Nemo-Finding-Nemo--166969_1600x1200.jpg'},
  {text: 'Dori', image: 'https://pbs.twimg.com/profile_images/663805112075362307/F5sQHXRS.jpg'},
