@@ -5,13 +5,11 @@ import {
   Text,
   View,
   Image,
-  Navigator,
-  TouchableHighlight
+  Navigator
 } from 'react-native';
 
 import Nav from '../nav/index';
 import SwipeCards from 'react-native-swipe-cards';
-
 
 class Card extends Component {
   render() {
@@ -27,7 +25,7 @@ class Card extends Component {
 class NoMoreCards extends Component {
   render() {
     return (
-      <View style={[styles.noMoreCards]}>
+      <View>
         <Text>Fim da linha</Text>
       </View>
     )
@@ -94,22 +92,12 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   thumbnail: {
-    flex: 2,
     width: 300,
     height: 300,
-  },
-  text: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10
   },
   noMoreCards: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  menu: {
-    paddingTop: 10,
-    paddingBottom: 10
   }
 })

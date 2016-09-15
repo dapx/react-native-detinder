@@ -6,10 +6,11 @@ import {
   View,
   Image,
   Navigator,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
 
 import SwipeWrapper from '../swipe/index';
+import Nav from '../nav/index';
 
 const routes = [
   {id: 0, title: "Identifique o criminoso"},
@@ -28,16 +29,15 @@ export default class NavigatorApp extends Component {
     } else {
       return (
         <View>
-        <TouchableHighlight onPress={() => {
+        <TouchableOpacity onPress={() => {
           if (route.id === 0) {
             navigator.push(this.props.routes[1])
           } else {
             navigator.pop();
           }
         }}>
-        <Text>Voltar</Text>
-        </TouchableHighlight>
-        <Text navigator={navigator} routes={routes}>"Formulario"</Text>
+        <Nav navigator={navigator} routes={routes}>"Formulario"</Nav>
+        </TouchableOpacity>
         </View>
       )
     }
@@ -47,7 +47,6 @@ export default class NavigatorApp extends Component {
     return (
       <View style={{flex:1}}>
       <Navigator
-      style={{flex: 1}}
       initialRoute={routes[0]}
       renderScene={this.renderScene.bind(this)}/>
       </View>
@@ -64,11 +63,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 1,
     elevation: 1,
-  },
-  thumbnail: {
-    flex: 2,
-    width: 300,
-    height: 300,
   },
   text: {
     fontSize: 20,

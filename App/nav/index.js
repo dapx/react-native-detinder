@@ -20,7 +20,7 @@ export default class Nav extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#f7f7f7' }}>
+      <View style={{ backgroundColor: '#2192d8', flexDirection: 'row' }}>
       <TouchableOpacity onPress={() => {
         if (this.props.routeId === 0) {
           this.props.navigator.push(this.props.routes[1])
@@ -34,5 +34,3 @@ export default class Nav extends Component {
     )
   }
 }
-const styles = StyleSheet.create({
-})
