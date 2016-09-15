@@ -9,7 +9,9 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import Nav from '../nav/index';
 import SwipeCards from 'react-native-swipe-cards';
+
 
 class Card extends Component {
   render() {
@@ -64,6 +66,8 @@ export default class SwipeWrapper extends Component {
 
   render() {
     return (
+      <View>
+      <Nav navigator={this.props.navigator} routes={this.props.routes} routeId={this.props.routeId} />
       <SwipeCards
         cards={this.state.cards}
         renderCard={(cardData) => <Card {...cardData} />}
@@ -74,6 +78,7 @@ export default class SwipeWrapper extends Component {
         yupText="Pego!"
         noText="Se safou!"
       />
+      </View>
     )
   }
 }

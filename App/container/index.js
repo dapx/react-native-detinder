@@ -19,15 +19,26 @@ const routes = [
 export default class NavigatorApp extends Component {
 
   renderScene(route, navigator){
-    if (route.id == 0){
+    if (route.id === 0){
       return (
         <SwipeWrapper
-        navigator={navigator}
+        navigator={navigator} routeId={route.id} routes={routes}
          />
       )
     } else {
       return (
-        <Text navigator={navigator}>"Hello"</Text>
+        <View>
+        <TouchableHighlight onPress={() => {
+          if (route.id === 0) {
+            navigator.push(this.props.routes[1])
+          } else {
+            navigator.pop();
+          }
+        }}>
+        <Text>Voltar</Text>
+        </TouchableHighlight>
+        <Text navigator={navigator} routes={routes}>"Formulario"</Text>
+        </View>
       )
     }
   }
