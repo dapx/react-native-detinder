@@ -65,7 +65,6 @@ export default class SwipeWrapper extends Component {
   render() {
     return (
       <View>
-      <Nav navigator={this.props.navigator} routes={this.props.routes} routeId={this.props.routeId} />
       <SwipeCards
         cards={this.state.cards}
         renderCard={(cardData) => <Card {...cardData} />}

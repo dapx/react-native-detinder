@@ -11,10 +11,11 @@ import {
 
 import SwipeWrapper from '../swipe/index';
 import Nav from '../nav/index';
+import Form from '../formulario/index';
 
 const routes = [
-  {id: 0, title: "Identifique o criminoso"},
-  {id: 1, title: "Texto"}
+  {id: 0, title: "Perfil Suspeito"},
+  {id: 1, title: "Possíveis Suspeitos"}
 ]
 
 export default class NavigatorApp extends Component {
@@ -22,22 +23,18 @@ export default class NavigatorApp extends Component {
   renderScene(route, navigator){
     if (route.id === 0){
       return (
-        <SwipeWrapper
-        navigator={navigator} routeId={route.id} routes={routes}
-         />
+        <View>
+        <Nav navigator={navigator} routeId={route.id} routes={routes} />
+        <Form navigator={navigator} routes={routes} routeId={route.id}/>
+        </View>
       )
     } else {
       return (
         <View>
-        <TouchableOpacity onPress={() => {
-          if (route.id === 0) {
-            navigator.push(this.props.routes[1])
-          } else {
-            navigator.pop();
-          }
-        }}>
-        <Nav navigator={navigator} routes={routes}>"Formulario"</Nav>
-        </TouchableOpacity>
+        <Nav navigator={navigator} routes={routes} routeId={route.id} />
+        <SwipeWrapper
+          navigator={navigator} routes={routes} routeId={route.id}
+        />
         </View>
       )
     }
