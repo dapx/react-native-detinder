@@ -12,10 +12,13 @@ import {
 import SwipeWrapper from '../swipe/index';
 import Nav from '../nav/index';
 import Form from '../formulario/index';
-
+import StartPage from '../start/index';
+import Cadastro from '../cadastro/index';
 const routes = [
-  {id: 0, title: "Perfil Suspeito"},
-  {id: 1, title: "Possíveis Suspeitos"}
+  {id: 0, title: "SignUp"},
+  {id: 1, title: "Dados da Vitima"},
+  {id: 2, title: "Perfil Suspeito"},
+  {id: 3, title: "Possíveis Suspeitos"}
 ]
 
 export default class NavigatorApp extends Component {
@@ -24,17 +27,35 @@ export default class NavigatorApp extends Component {
     if (route.id === 0){
       return (
         <View>
+        <StartPage navigator={navigator} routes={routes} routeId={route.id}/>
+        </View>
+      )
+    } else if (route.id === 1){
+      return (
+        <View>
+        <Nav navigator={navigator} routeId={route.id} routes={routes} />
+        <Cadastro navigator={navigator} routes={routes} routeId={route.id}/>
+        </View>
+      )
+    } else if (route.id === 2){
+      return (
+        <View>
         <Nav navigator={navigator} routeId={route.id} routes={routes} />
         <Form navigator={navigator} routes={routes} routeId={route.id}/>
+        </View>
+      )
+    } else if (route.id === 3){
+      return (
+        <View>
+        <Nav navigator={navigator} routes={routes} routeId={route.id} />
+        <SwipeWrapper navigator={navigator} routes={routes} routeId={route.id} />
         </View>
       )
     } else {
       return (
         <View>
         <Nav navigator={navigator} routes={routes} routeId={route.id} />
-        <SwipeWrapper
-          navigator={navigator} routes={routes} routeId={route.id}
-        />
+        <SwipeWrapper navigator={navigator} routes={routes} routeId={route.id} />
         </View>
       )
     }

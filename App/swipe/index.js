@@ -15,8 +15,8 @@ class Card extends Component {
   render() {
     return (
       <View style={[styles.card]}>
-        <Image style={styles.thumbnail} source={{uri: this.props.image}} />
-        <Text>{this.props.text}</Text>
+        <Image style={styles.thumbnail} source={{uri: this.props.imagem}} />
+        <Text>{this.props.rg}</Text>
       </View>
     )
   }
@@ -32,7 +32,7 @@ class NoMoreCards extends Component {
   }
 }
 
-let Cards = [
+/*let Cards = [
  {text: 'Nemo', image: 'http://wallpaper.ultradownloads.com.br/166969_Papel-de-Parede-Procurando-Nemo-Finding-Nemo--166969_1600x1200.jpg'},
  {text: 'Dori', image: 'https://pbs.twimg.com/profile_images/663805112075362307/F5sQHXRS.jpg'},
  {text: 'Pablo Escobar', image: 'http://paaash.pt/wp-content/uploads/2015/10/pablo-escobar-factos-interessantes-21.jpg'},
@@ -44,11 +44,25 @@ let Cards = [
  {text: 'Eminem', image: 'https://static.minilua.com/wp-content/uploads/2010/05/eminememinem1179706_thumb.jpg'},
  {text: 'Lula', image: 'http://imguol.com/c/noticias/6d/2015/09/01/instituto-lula-publica-imagem-de-ex-presidente-preso-pelo-dops-e-diz-sem-uniforme-listrado-de-desenho-animado-1441136591599_300x420.jpg'},
 ]
+*/
+let Cards;
+function fetchDetentos(){
+ fetch('http://10.197.37.100:4000/api/detentos')
+     .then((response) => response.json())
+     .then((responseJson) => {
+       Cards = responseJson.data;
+     })
+     .catch((error) => {
+       console.error(error);
+     });
+}
+fetchDetentos();
 
 export default class SwipeWrapper extends Component {
 
   constructor(props){
   super(props);
+  fetchDetentos();
   this.state = {
       cards: Cards,
     };

@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Image,
+  Slider,
   Navigator
 } from 'react-native';
 
@@ -14,7 +15,8 @@ import { Button, Icon, FormLabel, FormInput, CheckBox } from 'react-native-eleme
 
 const char = {
   tatuagem: false,
-  adornos: false
+  adornos: false,
+  altura: 1
 }
 
 export default class Form extends Component {
@@ -24,6 +26,7 @@ export default class Form extends Component {
   this.state = {
       tatuagem: char.tatuagem,
       adornos: char.adornos,
+      altura: char.altura,
     };
   }
 
@@ -46,13 +49,21 @@ export default class Form extends Component {
         checked={this.state.adornos}
         onPress={() => this.setState({ adornos: !this.state.adornos })}
         />
-      <FormLabel>Testemunha:</FormLabel>
+      <View>
+      <FormLabel>Altura Aproximada:</FormLabel>
+      <Slider
+          minimumValue={0.5}
+          maximumValue={2.5}
+          onValueChange={(value) => this.setState({altura: value})} />
+      <Text style={{textAlign: 'center'}}>{this.state.altura}</Text>
+      </View>
+      <FormLabel>Nome:</FormLabel>
       <FormInput onChangeText={() => console.log("TESTE")}/>
       <Button
         raised
         icon={{name: 'pageview'}}
         title='Procurar'
-        onPress={() => this.props.navigator.push(this.props.routes[1])}
+        onPress={() => { this.props.navigator.push(this.props.routes[3]) }}
       />
       </View>
     )
