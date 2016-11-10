@@ -35,10 +35,10 @@ export default class Form extends Component {
   render() {
     return (
       <View>
-      <FormLabel>CPF:</FormLabel>
-      <FormInput onChangeText={() => console.log("Valida CPF - setState CPF true")}/>
-      <FormLabel>Nome:</FormLabel>
-      <FormInput onChangeText={() => console.log("Valida nome - setState NOME true")}/>
+      <FormLabel>Numero SADE:</FormLabel>
+      <FormInput onChangeText={() => console.log("Valida SADE - setState CPF true")}/>
+      <FormLabel>Nome Completo:</FormLabel>
+      <FormInput onChangeText={() => console.log("Valida Nome Completo - setState NOME true")}/>
       <FormLabel>Celular:</FormLabel>
       <FormInput onChangeText={() => console.log("Valida celular - setState CELULAR true")}/>
       <Button
