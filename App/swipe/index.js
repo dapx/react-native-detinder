@@ -15,8 +15,8 @@ class Card extends Component {
   render() {
     return (
       <View style={[styles.card]}>
-        <Image style={styles.thumbnail} source={{uri: this.props.imagem}} />
-        <Text>{this.props.rg}</Text>
+        <Image style={styles.thumbnail} source={{uri: this.props.foto_arq}} />
+        <Text>{this.props.ind_id}</Text>
       </View>
     )
   }
@@ -45,27 +45,33 @@ class NoMoreCards extends Component {
  {text: 'Lula', image: 'http://imguol.com/c/noticias/6d/2015/09/01/instituto-lula-publica-imagem-de-ex-presidente-preso-pelo-dops-e-diz-sem-uniforme-listrado-de-desenho-animado-1441136591599_300x420.jpg'},
 ]
 */
-let Cards;
-function fetchDetentos(){
- fetch('http://10.197.37.100:4000/api/detentos')
-     .then((response) => response.json())
-     .then((responseJson) => {
-       Cards = responseJson.data;
-     })
-     .catch((error) => {
-       console.error(error);
-     });
-}
-fetchDetentos();
 
 export default class SwipeWrapper extends Component {
 
   constructor(props){
   super(props);
-  fetchDetentos();
   this.state = {
-      cards: Cards,
-    };
+    cards: []
+    }
+  }
+
+  componentWillMount(){
+    this.fetchDetentos('10.197.37.144', 8082).then((result) => {
+      console.log(result);
+      this.setState({ cards: result });
+    });
+  }
+
+  fetchDetentos(host, port){
+   return fetch(`http://${host}:${port}/detentos`)
+       .then((response) => response.json())
+       .then((responseJson) => {
+         //Cards = responseJson;
+         return responseJson;
+       })
+       .catch((error) => {
+         console.error(error);
+       });
   }
 
   handleYup (card) {
