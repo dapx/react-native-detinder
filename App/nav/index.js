@@ -22,7 +22,7 @@ export default class Nav extends Component {
 
   render() {
       return (
-        <View style={{ backgroundColor: '#2192d8', flexDirection: 'row' }}>
+        <View style={{ backgroundColor: 'green', flexDirection: 'row' }}>
 
         <TouchableOpacity onPress={() => {
             this.props.navigator.pop();

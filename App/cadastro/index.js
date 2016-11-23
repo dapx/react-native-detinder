@@ -9,28 +9,17 @@ import {
 } from 'react-native';
 
 import Nav from '../nav/index';
-
 import { Button, Icon, FormLabel, FormInput, CheckBox } from 'react-native-elements'
-
-const char = {
-  tatuagem: false,
-  adornos: false
-}
 
 export default class Form extends Component {
 
   constructor(props){
-  super(props);
-  this.state = {
-      tatuagem: char.tatuagem,
-      adornos: char.adornos,
-    };
+    super(props);
   }
 
   sendToServer(char) {
     console.log("Criado caracteristicas")
   }
-
 
   render() {
     return (
@@ -45,6 +34,7 @@ export default class Form extends Component {
         raised
         icon={{name: 'done-all'}}
         title='Finalizar'
+        backgroundColor='green'
         onPress={() => { this.props.navigator.push(this.props.routes[2]) }}
       />
       </View>
