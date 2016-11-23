@@ -6,77 +6,76 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 
-let questions = [
-  {
-    'id': 0,
-    'question': 'A cor do cabelo era escuro?',
-    'answers': [
-      { 'id': 0, text: 'sim', next: 1},
-      { 'id': 1, text: 'nao', next: 2}
-  ]
-  },
-  {
-    'id': 1,
-    'question': 'Qual era a cor do cabelo claro?',
-    'answers': [
-      {'id': 0, text: 'preto', next: 99},
-      {'id': 1, text: 'marrom', next: 99},
-      {'id': 2, text: 'loiro escuro', next: 99}
-    ]
-  },
-  {
-    'id': 3,
-    'question': 'Qual era a cor do cabelo claro?',
-    'answers': [
-      {'id': 0, text: 'branco', next: 99},
-      {'id': 1, text: 'loiro', next: 99},
-      {'id': 2, text: 'outro', next: 99}
-    ]
-  }
-]
+import * as api from '../api';
 
 export default class Perguntas extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      questionList: questions,
+      detento: this.props.detento,
+      questionList: null,
       question_id: 0
     };
+    console.log("Detento: " + this.props.detento);
+  }
+
+  componentWillMount(){
+    api.fetchQuestions().then((result) => {
+      console.log(result);
+      this.setState({ questionList: result });
+    });
   }
 
   render(){
-      return (
-        <View>
-          <Text>{ this.state.questionList[this.state.question_id].question }</Text>
+    return (
+      <View>
+      { this.state.questionList
+        ? (
           <View>
-          {this.renderAnswers(this.state.questionList[this.state.question_id])}
+            <Text style={{textAlign: 'center', fontSize: 18 }}>{ this.state.questionList[this.state.question_id].question }</Text>
+            <View>
+            {this.renderAnswers(this.state.questionList[this.state.question_id])}
+            </View>
           </View>
-        </View>
-      );
-    }
-
+          )
+      :   (
+          <View><Text>Não foi possivel conectar no servidor</Text></View>
+        )
+      }
+    </View>
+  );
+}
 
   renderAnswers(question){
-    return question.answers.map((answer) => {
+    return question.answers.map((answer, id) => {
       return (
         <Button
           raised
           icon={{name: 'pageview'}}
+          backgroundColor='green'
           title={answer.text}
-          onPress={() => this.nextQuestion(answer.next) }
+          key={id}
+          onPress={() => this.nextQuestion(answer.next, question.char, answer.text) }
         />
       );
     });
   }
 
-  nextQuestion(id){
-    if (id === 99){
-      this.props.navigator.push(this.props.routes[3]);
-    } else {
+  nextQuestion(id, chave, valor){
+    {chave
+      ? (this.setState({detento: api.defineDetento(chave, valor)}))
+      : (console.log("Pergunta sem characteristica"))
+    }
+    { id === 99
+      ? (
+        console.log('envia POST com objeto para retornar os detentos'),
+        this.props.navigator.push(this.props.routes[3])
+      )
+      : (
       this.setState({
       question_id: id,
-      });
+      }))
     }
   }
 
