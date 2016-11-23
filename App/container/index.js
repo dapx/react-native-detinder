@@ -26,8 +26,10 @@ export default class NavigatorApp extends Component {
   renderScene(route, navigator){
     if (route.id === 0){
       return (
-        <View>
+        <View style={styles.container}>
+        <Image source={{uri: "https://s-media-cache-ak0.pinimg.com/564x/8d/44/da/8d44da5b9f38ba16d7d820c461fa1328.jpg"}} style={{ flex: 1, width: null, height: null, alignSelf: 'stretch' }}>
         <StartPage navigator={navigator} routes={routes} routeId={route.id}/>
+        </Image>
         </View>
       )
     } else if (route.id === 1){
@@ -73,6 +75,12 @@ export default class NavigatorApp extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+  },
   card: {
     alignItems: 'center',
     borderRadius: 5,
