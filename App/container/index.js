@@ -16,6 +16,7 @@ import SwipeWrapper from '../swipe/index';
 import Nav from '../nav/index';
 import Form from '../formulario/index';
 import Form2 from '../formulario/index2';
+import Perfil from '../perfil/index';
 import StartPage from '../start/index';
 import Cadastro from '../cadastro/index';
 const routes = [
@@ -23,8 +24,11 @@ const routes = [
   {id: 1, title: "Dados da Vitima"},
   {id: 2, title: "Perfil Suspeito"},
   {id: 3, title: "Perguntas"},
-  {id: 4, title: "Possíveis Suspeitos"}
+  {id: 4, title: "Possíveis Suspeitos"},
+  {id: 5, title: "Suspeito Identificado"}
 ]
+
+var selectedDetento = {};
 
 export default class NavigatorApp extends Component {
 
@@ -67,7 +71,15 @@ export default class NavigatorApp extends Component {
       return (
         <View>
         <Nav navigator={navigator} routes={routes} routeId={route.id} />
-        <SwipeWrapper navigator={navigator} routes={routes} routeId={route.id} />
+        <SwipeWrapper navigator={navigator} routes={routes} routeId={route.id} selectedDetento={selectedDetento}/>
+        </View>
+      )
+      break;
+      case 5:
+      return (
+        <View>
+        <Nav navigator={navigator} routes={routes} routeId={route.id} />
+        <Perfil navigator={navigator} routes={routes} routeId={route.id} selectedDetento={selectedDetento} />
         </View>
       )
       break;

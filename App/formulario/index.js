@@ -94,7 +94,7 @@ export default class Form extends Component {
       icon={{name: 'pageview'}}
       backgroundColor='green'
       title={'Continuar'}
-      onPress={() => this.props.navigator.push(this.props.routes[4])} />
+      onPress={() => this.props.navigator.push(this.props.routes[3])} />
       </View>
       </ScrollView>
     );

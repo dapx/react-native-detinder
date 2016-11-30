@@ -1,6 +1,7 @@
 import * as config from '../../config';
 
 let detento = {};
+let selectedDetento = {};
 
 export function fetchQuestions(){
   console.log(config.config.host);
@@ -55,4 +56,27 @@ export function defineDetentoString(key, value){
   detento[key]=[value];
   console.log(detento);
   return detento;
+}
+
+export function deleteDetentoAttr(key){
+  detento[key]=undefined;
+  console.log(detento);
+  return detento;
+}
+
+export function loadDetento(ind_id){
+  return fetch(`http://${config.config.host}:${config.config.port}/detentos/${ind_id}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //Cards = responseJson;
+        selectedDetento = responseJson;
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+}
+
+export function getDetento(){
+  return selectedDetento;
 }

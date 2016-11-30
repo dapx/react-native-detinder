@@ -49,8 +49,10 @@ export default class SwipeWrapper extends Component {
     });
   }
 
-  handleYup (card) {
-    console.log(`Adicionado Suspeito ${card.ind_id}`)
+  handleYup (card, navigator, routes, selectedDetento) {
+    console.log(`Adicionado Suspeito ${card.ind_id}`);
+    selectedDetento = api.loadDetento(card.ind_id);
+    navigator.push(routes[5]);
   }
 
   handleNope (card) {
@@ -65,7 +67,7 @@ export default class SwipeWrapper extends Component {
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
 
-        handleYup={this.handleYup}
+        handleYup={(card) => this.handleYup(card, this.props.navigator, this.props.routes, this.props.selectedDetento)}
         handleNope={this.handleNope}
         yupText="Pego!"
         noText="Se safou!"
