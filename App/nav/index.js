@@ -22,7 +22,7 @@ export default class Nav extends Component {
 
   render() {
       return (
-        <View style={{ backgroundColor: 'green', flexDirection: 'row' }}>
+        <View style={{ backgroundColor: 'green', flexDirection: 'row', alignItems: 'center', padding: 10 }}>
 
         <TouchableOpacity onPress={() => {
             this.props.navigator.pop();
@@ -31,7 +31,7 @@ export default class Nav extends Component {
           name='backspace' color='white' />
         </TouchableOpacity>
 
-        <Text style={{paddingTop: 15, fontSize: 25, color: 'white'}}>{this.props.routes[this.props.routeId].title}</Text>
+        <Text style={{alignSelf: 'center', fontSize: 25, color: 'white', paddingLeft: 10}}>{this.props.routes[this.props.routeId].title}</Text>
         </View>
       )
     }
