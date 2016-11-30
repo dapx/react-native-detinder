@@ -2,7 +2,7 @@ import * as config from '../../config';
 
 let detento = {};
 
-export async function fetchQuestions(){
+export function fetchQuestions(){
   console.log(config.config.host);
   return fetch(`http://${config.config.host}:${config.config.port}/questions`)
     .then((response) => response.json())
@@ -44,7 +44,15 @@ export function fetchDetentosBKP(){
 }
 
 export function defineDetento(key, value){
-  detento[key]=value;
+  for (valor in key) {
+    detento[key[valor]]=value;
+  }
+  console.log(detento);
+  return detento;
+}
+
+export function defineDetentoString(key, value){
+  detento[key]=[value];
   console.log(detento);
   return detento;
 }
