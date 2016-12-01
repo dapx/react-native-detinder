@@ -60,32 +60,36 @@ export default class Form extends Component {
     api.defineDetento(key, value);
   }
 
+  componentWillMount(){
+    this.setState({detento: api.recoverDetento()});
+  }
+
   render() {
     return (
       <ScrollView>
       <FormLabel>Nome/Apelido:</FormLabel>
       <Tags initialText=""
-        initialTags={this.state.teste}
+        initialTags={this.state.detento.ind_alcunha}
         onChangeTags={(value) => this.onTesteChange(value, ['ind_alcunha'])} />
       <FormLabel>Pele:</FormLabel>
       <Tags initialText=""
-          initialTags={this.state.teste}
+          initialTags={this.state.detento.indcor_ds}
           onChangeTags={(value) => this.onTesteChange(value, ['indcor_ds'])} />
       <FormLabel>Olhos:</FormLabel>
       <Tags initialText=""
-        initialTags={this.state.teste}
+        initialTags={this.state.detento.indolhos_ds}
         onChangeTags={(value) => this.onTesteChange(value, ['indolhos_ds'])} />
       <FormLabel>Cabelo:</FormLabel>
       <Tags initialText=""
-        initialTags={this.state.teste}
+        initialTags={this.state.detento.indcabelo_ds}
         onChangeTags={(value) => this.onTesteChange(value, ['indcabelo_ds'])} />
       <FormLabel>Tatoo:</FormLabel>
       <Tags initialText=""
-        initialTags={this.state.teste}
+        initialTags={this.state.detento.ind_ds_tatoo}
         onChangeTags={(value) => this.onTesteChange(value, ['ind_ds_tatoo'])} />
       <FormLabel>Cicatriz:</FormLabel>
       <Tags initialText=""
-        initialTags={this.state.teste}
+        initialTags={this.state.detento.ind_ds_scar}
         onChangeTags={(value) => this.onTesteChange(value, ['ind_ds_scar'])} />
 
       <View style={{marginTop: 10}}>

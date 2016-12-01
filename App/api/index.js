@@ -80,3 +80,7 @@ export function loadDetento(ind_id){
 export function getDetento(){
   return selectedDetento;
 }
+
+export function recoverDetento(){
+  return detento;
+}
